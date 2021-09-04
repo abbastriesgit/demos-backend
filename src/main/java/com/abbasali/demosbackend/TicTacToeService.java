@@ -1,6 +1,7 @@
 package com.abbasali.demosbackend;
 
 import com.abbasali.demosbackend.model.*;
+import com.abbasali.demosbackend.ttt_ai.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 
@@ -25,16 +26,20 @@ public class TicTacToeService {
     }
     public TicTacToeStateResponse makeAMove(MoveRequest request) throws JsonProcessingException {
         GameState gameState= repository.get(request.getGameId());
-        if(gameLogic.makeMove(gameState,request)){
+        int player = gameLogic.makeMove(gameState,request);
+        if(player!=-1){
             repository.update(gameState);
             return mapToResponse(gameState,request.getPlayer());
         }
         throw new IllegalArgumentException("Invalid Move");
     }
-    public TicTacToeStateResponse createNewGame() throws JsonProcessingException {
+    public TicTacToeStateResponse createNewGame(Algorithm algorithm) throws JsonProcessingException {
+        GameStatus gameStatus = GameStatus.CREATED;
+        if(algorithm!=null && algorithm.equals(Algorithm.MIN_MAX))
+            gameStatus = GameStatus.P1;
         GameState gameState = GameState.builder()
                 .id(UUID.randomUUID().toString().substring(1,10))
-                .status(GameStatus.CREATED)
+                .status(gameStatus)
                 .boxes(_initializeListOfBoxes())
                 .build();
         repository.insert(gameState);
@@ -86,7 +91,6 @@ public class TicTacToeService {
                     _markCardSize(cards, boxState.getCardSize().get(i));
                 }
             }
-
         }
     }
 

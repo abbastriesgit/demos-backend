@@ -1,6 +1,9 @@
 package com.abbasali.demosbackend;
 
 import com.abbasali.demosbackend.model.*;
+import com.abbasali.demosbackend.ttt_ai.AiResponse;
+import com.abbasali.demosbackend.ttt_ai.Algorithm;
+import com.abbasali.demosbackend.ttt_ai.TicTacToeAi;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -8,19 +11,38 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class GameLogic {
-    public boolean makeMove(GameState gameState, MoveRequest request){
+public class GameLogic extends TicTacToeAi {
+    public int makeMove(GameState gameState, MoveRequest request){
         Map<Integer,Integer> cardsAvailable = _getCardsAvailable(gameState.getBoxes(),request.getPlayer());
         if(!isInvalid(gameState,request,cardsAvailable))
-            return false;
+            return -1;
+        boolean gameOver = makeMoveForPlayer(gameState,request);
+        if(request.getAlgorithm()==null || request.getAlgorithm().equals(Algorithm.PLAYER)){
+            return request.getPlayer();
+        }
+        if(gameOver)
+            return 1;
+        if(request.getAlgorithm().equals(Algorithm.MIN_MAX)){
+            AiResponse aiResponse = getBestMove(gameState);
+            if(aiResponse == null){
+                gameState.setStatus(GameStatus.DRAW);
+            }
+            else{
+                MoveRequest aiRequest = new MoveRequest("",2,aiResponse.getIndex(), aiResponse.getCardSize(), request.getAlgorithm());
+                makeMoveForPlayer(gameState,aiRequest);
+            }
+            return 2;
+        }
+        return -1;
+    }
+    public boolean makeMoveForPlayer(GameState gameState,MoveRequest request){
         BoxState boxState = gameState.getBoxes().get(request.getBoxIndex());
         boxState.setEmpty(false);
         boxState.putCard(request.getBoxSize(),request.getPlayer());
         gameState.setStatus(getStatusFromPlayer(request.getPlayer()==1?2:1));
-        isGameOver(gameState);
-        return true;
-    }
+        return isGameOver(gameState);
 
+    }
     private Map<Integer, Integer> _getCardsAvailable(List<BoxState> boxes, int player) {
         Map<Integer, Integer> boxSizeToCountMap = new HashMap<>();
         boxSizeToCountMap.put(1,2);

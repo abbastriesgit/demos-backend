@@ -2,6 +2,7 @@ package com.abbasali.demosbackend;
 
 import com.abbasali.demosbackend.model.MoveRequest;
 import com.abbasali.demosbackend.model.TicTacToeStateResponse;
+import com.abbasali.demosbackend.ttt_ai.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +20,9 @@ public class Controller {
     public ResponseEntity<TicTacToeStateResponse> getState(@RequestParam String gameId , @RequestParam int player){
         return ResponseEntity.ok(ticTacToeService.getState(gameId,player));
     }
-//    @GetMapping("/restart")
-//    public ResponseEntity<TicTacToeStateResponse> restart(@RequestParam String gameId ,@RequestParam int player){
-//        return ResponseEntity.ok(ticTacToeService.restart(gameId,player));
-//    }
     @PostMapping("/create")
-    public ResponseEntity<TicTacToeStateResponse> create() throws JsonProcessingException {
-        return ResponseEntity.ok(ticTacToeService.createNewGame());
+    public ResponseEntity<TicTacToeStateResponse> create(@RequestParam Algorithm algorithm) throws JsonProcessingException {
+        return ResponseEntity.ok(ticTacToeService.createNewGame(algorithm));
     }
     @PostMapping("/join")
     public ResponseEntity<TicTacToeStateResponse> join(@RequestParam String gameId) throws JsonProcessingException {

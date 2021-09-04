@@ -1,5 +1,6 @@
 package com.abbasali.demosbackend.model;
 
+import com.abbasali.demosbackend.ttt_ai.Algorithm;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,4 +11,5 @@ public class MoveRequest {
     int player;
     int boxIndex;
     int boxSize;
+    Algorithm algorithm;
 }

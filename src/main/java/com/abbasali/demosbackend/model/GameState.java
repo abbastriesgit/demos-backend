@@ -14,5 +14,4 @@ public class GameState {
     String id;
     List<BoxState> boxes;
     GameStatus status;
-
 }
