@@ -25,7 +25,7 @@ public abstract class TicTacToeAi {
            for(int j =0;j<6;j++){
                if(!aiCards[j])
                    continue;
-               int cardSize = (j+1)/2 +1;
+               int cardSize = (j+2)/2;
                if(boxState.isEmpty() || boxState.calculateTopCardSize() < cardSize){
                    aiCards[j] = false;
                    _putCard(boxState,cardSize,2);
@@ -59,7 +59,7 @@ public abstract class TicTacToeAi {
            for(int j =0;j<6;j++){
                if(!pCards[j])
                    continue;
-               int cardSize = (j+1)/2 +1;
+               int cardSize = (j+2)/2;
                if(boxState.isEmpty() || boxState.calculateTopCardSize() < cardSize){
                    pCards[j] = false;
                    _putCard(boxState,cardSize,1);
