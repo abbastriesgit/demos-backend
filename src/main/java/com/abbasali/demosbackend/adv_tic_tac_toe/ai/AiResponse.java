@@ -1,4 +1,4 @@
-package com.abbasali.demosbackend.ttt_ai;
+package com.abbasali.demosbackend.adv_tic_tac_toe.ai;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.abbasali.demosbackend.model;
+package com.abbasali.demosbackend.adv_tic_tac_toe.model;
 
 import lombok.Builder;
 import lombok.Data;

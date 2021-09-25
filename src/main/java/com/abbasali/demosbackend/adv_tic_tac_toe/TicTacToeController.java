@@ -1,18 +1,18 @@
-package com.abbasali.demosbackend;
+package com.abbasali.demosbackend.adv_tic_tac_toe;
 
-import com.abbasali.demosbackend.model.MoveRequest;
-import com.abbasali.demosbackend.model.TicTacToeStateResponse;
-import com.abbasali.demosbackend.ttt_ai.Algorithm;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.MoveRequest;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.TicTacToeStateResponse;
+import com.abbasali.demosbackend.adv_tic_tac_toe.ai.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class Controller {
+public class TicTacToeController {
     TicTacToeService ticTacToeService;
 
-    public Controller(TicTacToeService ticTacToeService) {
+    public TicTacToeController(TicTacToeService ticTacToeService) {
         this.ticTacToeService = ticTacToeService;
     }
 

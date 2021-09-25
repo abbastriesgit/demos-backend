@@ -1,6 +1,6 @@
-package com.abbasali.demosbackend.model;
+package com.abbasali.demosbackend.adv_tic_tac_toe.model;
 
-import com.abbasali.demosbackend.ttt_ai.Algorithm;
+import com.abbasali.demosbackend.adv_tic_tac_toe.ai.Algorithm;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

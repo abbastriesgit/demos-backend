@@ -1,7 +1,7 @@
-package com.abbasali.demosbackend;
+package com.abbasali.demosbackend.adv_tic_tac_toe;
 
-import com.abbasali.demosbackend.model.*;
-import com.abbasali.demosbackend.ttt_ai.Algorithm;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.*;
+import com.abbasali.demosbackend.adv_tic_tac_toe.ai.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 
