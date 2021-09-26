@@ -8,11 +8,15 @@ public class RobotActionFactory {
     MoveForward moveForward;
     TurnRight turnRight;
     Position position;
+    TurnAround turnAround;
+    Wait wait;
 
-    public RobotActionFactory(MoveForward moveForward, TurnRight turnRight, Position position) {
+    public RobotActionFactory(MoveForward moveForward, TurnRight turnRight, Position position, TurnAround turnAround, Wait wait) {
         this.moveForward = moveForward;
         this.turnRight = turnRight;
         this.position = position;
+        this.turnAround = turnAround;
+        this.wait = wait;
     }
 
     public RobotAction getAction(RobotActionName name) throws IllegalArgumentException{
@@ -23,6 +27,10 @@ public class RobotActionFactory {
                 return turnRight;
             case POSITION:
                 return position;
+            case TURN_AROUND:
+                return turnAround;
+            case WAIT:
+                return wait;
         }
         throw new IllegalArgumentException("No such Move");
     }

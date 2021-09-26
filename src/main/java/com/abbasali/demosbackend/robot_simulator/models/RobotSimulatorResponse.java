@@ -9,9 +9,7 @@ import java.util.List;
 @Builder
 @Data
 public class RobotSimulatorResponse  {
-    RobotState initState;
-    RobotState finalState;
-    List<RobotState> intermediateStates;
+    List<RobotState> positions;
     String message;
     ValidationResponse validationResponse;
     boolean isSuccess;

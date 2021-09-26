@@ -8,5 +8,7 @@ import java.util.List;
 public class RobotSimulationRequest {
     List<String> commands;
     boolean getIntermediateStates;
-
+    int rows;
+    int columns;
+    Mode mode;
 }

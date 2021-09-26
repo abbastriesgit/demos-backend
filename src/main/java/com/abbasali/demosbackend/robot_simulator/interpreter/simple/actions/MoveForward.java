@@ -10,6 +10,7 @@ public class MoveForward implements RobotAction {
     public RobotState performAction(RobotState initState, Object... args) throws IllegalArgumentException {
        int xStep = 0;
        int yStep = 0;
+       int steps =  Integer.parseInt((String) args[1]);
        switch (initState.getDirection()){
            case NORTH:
                yStep = -1;
@@ -25,8 +26,8 @@ public class MoveForward implements RobotAction {
                break;
        }
        return RobotState.builder()
-               .x(initState.getX() + xStep)
-               .y(initState.getY() + yStep)
+               .x(initState.getX() + xStep * steps)
+               .y(initState.getY() + yStep * steps)
                .direction(initState.getDirection())
                .build();
     }
@@ -34,12 +35,17 @@ public class MoveForward implements RobotAction {
     @Override
     public ValidationResult validate(ValidationResult request) throws IllegalArgumentException {
         String[] exp = request.getCommand().split(" ");
-        if(exp.length == 1 && exp[0].equals("FORWARD")){
-            request.setValid(true);
-            return request;
+        if(exp.length == 2 && exp[0].equals("FORWARD")){
+            try {
+                Integer.parseInt(exp[1]);
+                request.setValid(true);
+                return request;
+            }
+            catch (Exception ignored){
+            }
         }
         request.setValid(false);
-        request.setError("Invalid forward command");
+        request.setError("Invalid FORWARD command");
         return request;
     }
 }

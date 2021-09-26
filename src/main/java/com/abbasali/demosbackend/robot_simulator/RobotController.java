@@ -4,11 +4,13 @@ import com.abbasali.demosbackend.robot_simulator.interpreter.models.ValidationRe
 import com.abbasali.demosbackend.robot_simulator.models.RobotSimulationRequest;
 import com.abbasali.demosbackend.robot_simulator.models.RobotSimulatorResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("robot")
+@CrossOrigin(origins = "*")
 public class RobotController {
 
     RobotSimulatorService service;
