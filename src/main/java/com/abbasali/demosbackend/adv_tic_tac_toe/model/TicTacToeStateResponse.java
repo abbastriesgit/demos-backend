@@ -1,7 +1,5 @@
-package com.abbasali.demosbackend.model;
+package com.abbasali.demosbackend.adv_tic_tac_toe.model;
 
-import com.abbasali.demosbackend.model.BoxState;
-import com.abbasali.demosbackend.model.Card;
 import lombok.Builder;
 import lombok.Data;
 

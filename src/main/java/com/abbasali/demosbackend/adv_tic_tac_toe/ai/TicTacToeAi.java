@@ -1,7 +1,7 @@
-package com.abbasali.demosbackend.ttt_ai;
+package com.abbasali.demosbackend.adv_tic_tac_toe.ai;
 
-import com.abbasali.demosbackend.model.BoxState;
-import com.abbasali.demosbackend.model.GameState;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.BoxState;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.GameState;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

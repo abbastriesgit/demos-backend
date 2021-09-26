@@ -1,9 +1,9 @@
-package com.abbasali.demosbackend;
+package com.abbasali.demosbackend.adv_tic_tac_toe;
 
-import com.abbasali.demosbackend.model.*;
-import com.abbasali.demosbackend.ttt_ai.AiResponse;
-import com.abbasali.demosbackend.ttt_ai.Algorithm;
-import com.abbasali.demosbackend.ttt_ai.TicTacToeAi;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.*;
+import com.abbasali.demosbackend.adv_tic_tac_toe.ai.AiResponse;
+import com.abbasali.demosbackend.adv_tic_tac_toe.ai.Algorithm;
+import com.abbasali.demosbackend.adv_tic_tac_toe.ai.TicTacToeAi;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

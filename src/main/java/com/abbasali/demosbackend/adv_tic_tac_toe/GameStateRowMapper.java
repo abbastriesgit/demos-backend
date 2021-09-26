@@ -1,6 +1,6 @@
-package com.abbasali.demosbackend;
+package com.abbasali.demosbackend.adv_tic_tac_toe;
 
-import com.abbasali.demosbackend.model.GameState;
+import com.abbasali.demosbackend.adv_tic_tac_toe.model.GameState;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.jdbc.core.RowMapper;
