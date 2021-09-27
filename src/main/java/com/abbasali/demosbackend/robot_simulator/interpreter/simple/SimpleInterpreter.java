@@ -9,6 +9,7 @@ import com.abbasali.demosbackend.robot_simulator.interpreter.simple.actions.Robo
 import com.abbasali.demosbackend.robot_simulator.models.Mode;
 import com.abbasali.demosbackend.robot_simulator.models.RobotSimulatorResponse;
 import com.abbasali.demosbackend.robot_simulator.models.RobotState;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,13 +21,8 @@ import java.util.Map;
 public class SimpleInterpreter implements Interpreter {
 
     Map<String, RobotAction> commandActions;
-    public SimpleInterpreter(RobotActionFactory factory) {
-        commandActions = new HashMap<>();
-        commandActions.put("FORWARD",factory.getAction(RobotActionName.MOVE));
-        commandActions.put("RIGHT",factory.getAction(RobotActionName.TURN_RIGHT));
-        commandActions.put("POSITION",factory.getAction(RobotActionName.POSITION));
-        commandActions.put("TURNAROUND",factory.getAction(RobotActionName.TURN_AROUND));
-        commandActions.put("WAIT",factory.getAction(RobotActionName.WAIT));
+    public SimpleInterpreter(@Qualifier("commandActions") Map<String, RobotAction> commandActions) {
+        this.commandActions = commandActions;
     }
 
     @Override
@@ -55,6 +51,7 @@ public class SimpleInterpreter implements Interpreter {
     }
 
     private void _applyMode(RobotState newState, int rows, int columns, Mode mode) {
+        //todo:: more modes can be added later
         switch (mode){
             case BOUNDED:
             default:
