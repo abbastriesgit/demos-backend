@@ -29,18 +29,18 @@ public class SimpleInterpreter implements Interpreter {
     public InterpreterResponse simulate(List<String> commands, int rows, int columns, Mode mode) throws IllegalArgumentException {
        List<RobotState> response = new ArrayList<>();
         for (String command : commands) {
-            if(command.isBlank())
+            if(command.isBlank()) //ignore empty commands
                 continue;
             String[] exp = command.split(" ");
-            if(exp.length == 0)
+            if(exp.length == 0)//ignore empty commands
                 continue;
             if(!commandActions.containsKey(exp[0]))
                 throw new IllegalArgumentException("Invalid command : " + exp[0]);
             RobotAction action = commandActions.get(exp[0]);
             RobotState newState;
-            if(response.size()==0)
+            if(response.size()==0)//first command initializes robot state
                 newState =action.performAction(null,exp);
-            else
+            else                //
                 newState = action.performAction(response.get(response.size()-1),exp);
             _applyMode(newState,rows,columns,mode);
             response.add(newState);
@@ -55,14 +55,14 @@ public class SimpleInterpreter implements Interpreter {
         switch (mode){
             case BOUNDED:
             default:
-                if(newState.getX()<0)
-                    newState.setX(0);
-                if(newState.getY()<0)
-                    newState.setY(0);
                 if(newState.getX()>=columns)
                     newState.setX(columns-1);
                 if(newState.getY()>=rows)
                     newState.setY(rows-1);
+                if(newState.getX()<0)
+                    newState.setX(0);
+                if(newState.getY()<0)
+                    newState.setY(0);
         }
     }
 

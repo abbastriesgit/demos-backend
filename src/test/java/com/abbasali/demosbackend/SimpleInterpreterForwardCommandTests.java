@@ -7,6 +7,7 @@ import com.abbasali.demosbackend.robot_simulator.models.RobotState;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SimpleInterpreterForwardCommandTests {
 
@@ -48,5 +49,17 @@ public class SimpleInterpreterForwardCommandTests {
                 .performAction(state,"FORWARD","2");
         assertThat(nState.getX()).isEqualTo(3);
         assertThat(nState.getY()).isEqualTo(2);
+    }
+    @Test
+    public void testInvalidMoveCommandSimulate(){
+        MoveForward moveForward = new MoveForward();
+        RobotState state = RobotState.builder().x(1).y(2).direction(RobotDirection.EAST).build();
+
+        assertThrows(RuntimeException.class, () -> {
+            moveForward.performAction(state,"FORWARD","X");
+        });
+        assertThrows(RuntimeException.class, () -> {
+            moveForward.performAction(state,"FORWARD");
+        });
     }
 }
