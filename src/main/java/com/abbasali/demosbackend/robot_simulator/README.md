@@ -3,4 +3,5 @@ UnitTests are present [here](https://github.com/abbastriesgit/demos-backend/blob
 
 ### Todo
 1. Add more modes . Only one mode is avialable right now BOUNDED . In this mode robot position never leaves the grid and stops after touching a border.
-3. Write more Tests
+2. Write more Tests
+3. Return correct response codes.
